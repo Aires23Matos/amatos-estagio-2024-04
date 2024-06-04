@@ -1,5 +1,7 @@
 package domain
 
-type NotaRecebimentoRepository interface {
+type NotaRecebimentoRepositorio interface {
+	Buscar(id string) (NotaDeRecebimento, error)
+	Guardar(n NotaDeRecebimento)
 	Tamanho() int
 }

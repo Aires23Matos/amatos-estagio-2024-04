@@ -1,12 +1,20 @@
 package application
 
-type AcmeService struct{}
+import "Amc/internal/domain"
 
-func NovoAcmeService() *AcmeService {
-	return &AcmeService{}
+type acme struct {
+	repo     domain.NotaRecebimentoRepositorio
+	catalogo domain.Catalogo
 }
 
-func (s AcmeService) ReceberMercadoria() {
+func AcmeServico(r domain.NotaRecebimentoRepositorio, c domain.Catalogo) *acme {
+	return &acme{repo: r, catalogo: c}
+}
 
-	
+func (s acme) ReceberMercadoria(p ...string) {
+	produtos := s.catalogo.BuscarProdutos(p...)
+
+	n := domain.NovaNotaDeRecebimento("some-id", produtos)
+
+	s.repo.Guardar(n)
 }
