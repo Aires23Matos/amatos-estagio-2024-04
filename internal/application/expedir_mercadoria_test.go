@@ -6,7 +6,7 @@ import (
 )
 
 func TestEXpedirMercadoria(t *testing.T){
-	t.Run("",func(t *testing.T) {
+	t.Run("Deve Criar uma Guia de Remessa",func(t *testing.T) {
 		//Arrange
 		guia := application.NovoGuiaDeRemessa()
 
@@ -18,4 +18,6 @@ func TestEXpedirMercadoria(t *testing.T){
 			t.Errorf("A Guia de Remessa esta vazia")
 		}
 	})
+
+
 }
