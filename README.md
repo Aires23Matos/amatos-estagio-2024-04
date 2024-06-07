@@ -23,8 +23,12 @@ Sobre a Acme, Lda
 * Como correr o programa
 * Passo por passo
 
+* Compilação
+você pode usar o comando go build com variáveis de ambiente
+
+
 ```
-blocos de código para comandos
+go build -o bin/Acme.exe main.go
 ```
 
 ## Ajuda
