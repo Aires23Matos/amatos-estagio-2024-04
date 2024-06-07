@@ -40,11 +40,3 @@ Após a compilação, você pode executar o CLI no terminal
 ```
 ./bin/Acme expedir P1 P2 P3
 ````
-
-## Ajuda
-
-Qualquer conselho para problemas ou questões comuns.
-```
-comando a ser executado se o programa contiver informações auxiliares
-```
-
