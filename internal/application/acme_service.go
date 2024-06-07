@@ -1,17 +1,24 @@
 package application
 
-type AcmeGuia struct {
-	//repo domain.GuiaDeRemessarepositorio
+import "Acme/internal/domain"
+
+type GuiDeRemessaServico struct {
+	repo domain.GuiaDeRemessaRepositorio
 }
 
-func ServicoGuiaDeRemessa() *AcmeGuia {
-	return &AcmeGuia{}
+func NovoGuiaDeRemessa(repo domain.GuiaDeRemessaRepositorio) *GuiDeRemessaServico {
+	return &GuiDeRemessaServico{
+		repo: repo,
+	}
 }
 
-func (g *AcmeGuia) NovoGuiaDeRemessa() int {
-	return 1
+func (g *GuiDeRemessaServico) CriarGuiaDeRemessa() string {
+	Guia := domain.GuiaDeRemessa{Mensagem: "Guia de Remessa Criada"}
+	g.repo.Salvar(Guia)
+	return Guia.Mensagem
 }
 
-func (g *AcmeGuia) ExpedirMercadoria() {
-
+func (g *GuiDeRemessaServico) ExpedirMercadoria() {
+	Guia := domain.GuiaDeRemessa{ID: "1"}
+	g.repo.Salvar(Guia)
 }
