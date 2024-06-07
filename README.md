@@ -27,9 +27,15 @@ Sobre a Acme, Lda
 você pode usar o comando go build com variáveis de ambiente
 
 
+Compilação para: 
+- Windows
+- Linux
+- Mac OS
+
 ```
-go build -o bin/Acme.exe main.go
+go build -o bin/Acme main.go
 ```
+
 Isso deve criar uma guia de remessa e expedir as mercadorias especificadas.
 
 
