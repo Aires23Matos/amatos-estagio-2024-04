@@ -2,6 +2,12 @@
 
 Este projecto para aprendizado no estágio Zafir
 
+## Autores
+1. Aires de Matos
+2. Denilson Simões
+3. Tito Cazanga [https://github.com/AmandaAilin]
+
+
 ## Desscrição
 
 Sobre a Acme, Lda
@@ -27,10 +33,4 @@ Qualquer conselho para problemas ou questões comuns.
 ```
 comando a ser executado se o programa contiver informações auxiliares
 ```
-
-## Autores
-1. Aires de Matos
-2. Denilson Simões
-3. Tito Cazanga
-
 
