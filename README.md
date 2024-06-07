@@ -30,6 +30,16 @@ você pode usar o comando go build com variáveis de ambiente
 ```
 go build -o bin/Acme.exe main.go
 ```
+Isso deve criar uma guia de remessa e expedir as mercadorias especificadas.
+
+
+* Execução do CLI
+Após a compilação, você pode executar o CLI no terminal
+
+
+```
+./bin/Acme expedir P1 P2 P3
+````
 
 ## Ajuda
 
