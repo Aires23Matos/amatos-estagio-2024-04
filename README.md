@@ -5,7 +5,7 @@ Este projecto para aprendizado no estágio Zafir
 ## Autores
 1. Aires de Matos
 2. Denilson Simões
-3. Tito Cazanga [https://github.com/AmandaAilin]
+3. Tito Cazanga
 
 
 ## Desscrição
