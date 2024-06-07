@@ -75,7 +75,7 @@ func TestExpedirMercadoria(t *testing.T) {
 		servico.ExpedirMercadoria("P1", "P2", "P3")
 
 		// Assert
-		guia, _ := repo.Buscar("some-id")
+		guia, _ := repo.Buscar("ID dos produtos")
 
 		p1 := guia.Linha()[0]
 		p2 := guia.Linha()[1]
