@@ -6,6 +6,7 @@ type GuiaDeRemessaRepositorio interface {
 	Tamanho() int
 	Salvar(Guia GuiaDeRemessa)
 	Buscar(id string) (GuiaDeRemessa, error)
+	Todas()[]GuiaDeRemessa
 }
 
 type GuiaDeRemessaRepositorioFalso struct {
@@ -30,6 +31,14 @@ func AcmeEstoque() *FolhaDeEstoque {
 	produtos["P2"] = NovoProduto("P2", "Cadeiras")
 	produtos["P3"] = NovoProduto("P3", "Panos")
 	return &FolhaDeEstoque{produtos: produtos}
+}
+
+func (r *GuiaDeRemessaRepositorioFalso) Todas()[]GuiaDeRemessa {
+	var todas []GuiaDeRemessa
+	for _, guia := range r.dadosguia {
+		todas = append(todas, guia)
+	}
+	return todas
 }
 
 func (g *GuiaDeRemessaRepositorioFalso) Buscar(id string) (GuiaDeRemessa, error) {

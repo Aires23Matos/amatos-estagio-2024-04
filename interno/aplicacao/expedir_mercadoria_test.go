@@ -94,4 +94,28 @@ func TestExpedirMercadoria(t *testing.T) {
 			t.Errorf("ID do produto errado %v", p3.IdProduto)
 		}
 	})
+
+	t.Run("Deve Espedir Mercadoria", func(t *testing.T) {
+		// Arrange
+		estoque := dominio.AcmeEstoque()
+		repo := dominio.NovoExpedirMercadoriaRepositorio()
+		servico := servico.NovoGuiaDeRemessa(repo, estoque)
+	
+		// Act
+		servico.ExpedirMercadoria("P1", "P2", "P3")
+	
+		// Assert
+		if !servico.MercadoriaExpedida("P1") {
+			t.Error("Mercadoria P1 deveria ter sido expedida")
+		}
+		if !servico.MercadoriaExpedida("P2") {
+			t.Error("Mercadoria P2 deveria ter sido expedida")
+		}
+		if !servico.MercadoriaExpedida("P3") {
+			t.Error("Mercadoria P3 deveria ter sido expedida")
+		}
+		if servico.MercadoriaExpedida("P4") {
+			t.Error("Mercadoria P4 não deveria ter sido expedida")
+		}
+	})
 }

@@ -31,9 +31,20 @@ func (g *GuiaDeRemessa) constroiLinhas(produtos []Produto) {
 }
 
 func NovaGuiaDeRemessa(id string, produtos []Produto) GuiaDeRemessa {
+		//Obs
 	n := GuiaDeRemessa{ID: id, Linhas: make([]LinhaDeGuiaDeRemessa, 0)}
 
 	n.constroiLinhas(produtos)
 
-	return n
+	//Until here
+	linhas := make([]LinhaDeGuiaDeRemessa, len(produtos))
+	for i, produto := range produtos {
+		linhas[i] = LinhaDeGuiaDeRemessa{IdProduto: produto.id}
+	}
+
+	return GuiaDeRemessa{
+		ID:     id,
+		Linhas: linhas,
+	}
 }
+
