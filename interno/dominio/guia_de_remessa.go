@@ -8,9 +8,9 @@ type LinhaDeGuiaDeRemessa struct {
 }
 
 type GuiaDeRemessa struct {
-	ID string
+	ID       string
 	Mensagem string
-	Linhas []LinhaDeGuiaDeRemessa
+	Linhas   []LinhaDeGuiaDeRemessa
 }
 
 func (g *GuiaDeRemessa) IDdados() string {
@@ -30,11 +30,10 @@ func (g *GuiaDeRemessa) constroiLinhas(produtos []Produto) {
 	}
 }
 
-func NovaNotaDeRecebimento(id string, produtos []Produto) GuiaDeRemessa {
+func NovaGuiaDeRemessa(id string, produtos []Produto) GuiaDeRemessa {
 	n := GuiaDeRemessa{ID: id, Linhas: make([]LinhaDeGuiaDeRemessa, 0)}
 
 	n.constroiLinhas(produtos)
 
 	return n
 }
-
