@@ -21,6 +21,8 @@ func TestRegistrarEntregaConcluida(t *testing.T) {
 			t.Errorf("Os dados da entrega concluída não foram corretamente atribuídos: esperado %s, %s, %s, recebido %s, %s, %s", encomendaID, destinatario, dataConclusao, entrega.EncomendaID, entrega.Destinatario, entrega.DataConclusao)
 		}
 	})
+
+	
 }
 
 
