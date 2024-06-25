@@ -35,7 +35,6 @@ var inserirPacienteCmd = &cobra.Command{
 }
 
 
-
 func init() {
 	rootCmd.AddCommand(inserirPacienteCmd)
 }
