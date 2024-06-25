@@ -2,13 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 	"time"
 	"vet-clinic/application/usecase"
 	"vet-clinic/domain/entities"
 	"vet-clinic/infrastructure"
-
 	"github.com/spf13/cobra"
 )
 
@@ -58,7 +56,7 @@ var efetuarRondaCmd = &cobra.Command{
 		}
 		if contagemRondas >= 2 {
 			fmt.Println("Não é permitido efetuar mais de duas rondas por dia para o mesmo paciente.")
-			os.Exit(1)
+			return
 		}
 		err := rondaUsecase.EfetuarRonda(pacienteID, exame)
 
