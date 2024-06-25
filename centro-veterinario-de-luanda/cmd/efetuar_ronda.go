@@ -65,7 +65,6 @@ var efetuarRondaCmd = &cobra.Command{
 		} else {
 			fmt.Println("Ronda efetuada com sucesso!")
 		}
-
 	},
 }
 

@@ -1,8 +1,8 @@
 package mocks
 
 import (
-	"vet-clinic/domain/entities"
 	"errors"
+	"vet-clinic/domain/entities"
 )
 
 type MockRondaRepository struct {
