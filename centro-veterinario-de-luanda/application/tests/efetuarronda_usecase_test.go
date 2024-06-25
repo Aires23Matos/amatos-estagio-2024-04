@@ -46,6 +46,6 @@ func TestEfetuarRonda(t *testing.T) {
 
 	er := service.EfetuarRonda("123", exame)
 	if er != nil{
-		t.Errorf("Esperado erro ao realizar mais de duas rondas no mesmo dia")
+		t.Errorf("Esperado erro ao efetuar mais de duas rondas no mesmo dia")
 	}
 }
