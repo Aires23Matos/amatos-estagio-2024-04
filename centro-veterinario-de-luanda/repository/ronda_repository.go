@@ -1,26 +1,26 @@
-package mocks
+package repository
 
 import (
 	"errors"
 	"vet-clinic/domain/entities"
 )
 
-type MockRondaRepository struct {
+type ronda struct {
 	Rondas []*entities.Ronda
 }
 
-func NewMockRondaRepository() *MockRondaRepository {
-	return &MockRondaRepository{
+func NewRondaRepository() *ronda {
+	return &ronda{
 		Rondas: make([]*entities.Ronda, 0),
 	}
 }
 
-func (r *MockRondaRepository) Historico(ronda *entities.Ronda) error {
+func (r *ronda) Historico(ronda *entities.Ronda) error {
 	r.Rondas = append(r.Rondas, ronda)
 	return nil
 }
 
-func (r *MockRondaRepository) BuscarPacienteId(pacienteID string) ([]*entities.Ronda, error) {
+func (r *ronda) BuscarPacienteId(pacienteID string) ([]*entities.Ronda, error) {
 	rondasDoPaciente := make([]*entities.Ronda, 0)
 	for _, ronda := range r.Rondas {
 		if ronda.PacienteID == pacienteID {

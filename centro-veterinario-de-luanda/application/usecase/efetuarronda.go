@@ -3,16 +3,16 @@ package usecase
 import (
 	"errors"
 	"time"
+	"vet-clinic/domain"
 	"vet-clinic/domain/entities"
-	"vet-clinic/domain/repository"
 )
 
 type RondaCaseUse struct {
-	rondaRepo    repository.RondaRepository
-	pacineteRepo repository.PacienteRepository
+	rondaRepo    domain.RondaRepository
+	pacineteRepo domain.PacienteRepository
 }
 
-func NewRondaCaseUse(rondaRepo repository.RondaRepository, pacineteRepo repository.PacienteRepository) *RondaCaseUse {
+func NewRondaCaseUse(rondaRepo domain.RondaRepository, pacineteRepo domain.PacienteRepository) *RondaCaseUse {
 	return &RondaCaseUse{
 		rondaRepo:    rondaRepo,
 		pacineteRepo: pacineteRepo,

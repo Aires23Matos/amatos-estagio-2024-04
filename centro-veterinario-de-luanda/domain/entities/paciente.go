@@ -5,6 +5,7 @@ import "time"
 type Paciente struct {
 	ID          string
 	Nome        string
+	
 	DataEntrada time.Time
 }
 

@@ -1,4 +1,4 @@
-package repository
+package domain
 
 import "vet-clinic/domain/entities"
 
