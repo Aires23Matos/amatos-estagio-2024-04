@@ -2,6 +2,10 @@
 
 Projecto aprendizado pelos estagiários da Zafir
 
+## Funcionalidade
+
+1. Internar paciente
+
 ## Autores
 
 1. Aires Matos
