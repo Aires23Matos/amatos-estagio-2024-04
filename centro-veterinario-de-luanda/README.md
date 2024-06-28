@@ -38,13 +38,15 @@ Compilação para:
 - Mac OS
 
  ```
-./vet-clinic 
+./vet-clinic-windows
+./vet-clinic-macos
+./vet-clinic-linux
 ```
 
 * Execução do CLI
 Após a compilação, você pode executar o CLI no terminal
 
-Exemplo: ./vet-clinic inserir-paciente 1 Bobby 100 Canino
+Exemplo: ./vet-clinic-macos inserir-paciente 1 Bobby 100 Canino
 ```
-./vet-clinic internar-paciente <ID> <Nome> <IDTutor> <espécie>
+./vet-clinic-macos internar-paciente <ID> <Nome> <IDTutor> <espécie>
 ````
