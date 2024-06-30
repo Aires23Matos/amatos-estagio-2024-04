@@ -11,7 +11,7 @@ Projecto aprendizado pelos estagiários da Zafir
 1. Aires Matos
 2. Manuel Afonso
 
-## Desscrição
+## Descrição
 
 Projecto - Centro Veterinário de Luanda
 
