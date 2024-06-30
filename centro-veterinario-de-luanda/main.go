@@ -1,10 +1,9 @@
 package main
 
-import (
-
-	"vet-clinic/cmd"
-)
+import "vet-clinic/cmd"
 
 func main() {
 	cmd.Execute()
 }
+
+

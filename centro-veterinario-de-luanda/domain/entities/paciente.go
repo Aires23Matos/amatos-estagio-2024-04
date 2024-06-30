@@ -2,17 +2,27 @@ package entities
 
 import "time"
 
+type EstadoPaciente string
+type Especie string
+
+const (
+	EstadoInternado EstadoPaciente = "Internado"
+	Canino          Especie        = "Canino"
+	Felino          Especie        = "Felino"
+	Outros          Especie        = "Outros"
+)
+
 type Paciente struct {
-	ID          string
-	Nome        string
-	
-	DataEntrada time.Time
+	ID            string
+	Nome          string
+	Queixa        []string
+	Estado        EstadoPaciente
+	Diagnostico   string
+	Tutor         *Tutor
+	Especie       Especie
+	DatadeEntrada time.Time
 }
 
-func NewPaciente(id, nome string) *Paciente {
-	return &Paciente{
-		ID:          id,
-		Nome:        nome,
-		DataEntrada: time.Now(),
-	}
+type Tutor struct {
+	TutorID string
 }

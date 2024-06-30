@@ -1,32 +1,44 @@
 package repository
 
 import (
-	"errors"
 	"vet-clinic/domain/entities"
+	"errors"
 )
 
-type paciente struct {
-	Pacientes map[string]*entities.Paciente
+var (
+	ErrPacienteExiste = errors.New("paciente com o mesmo ID já existe")
+)
+
+type pacienterepository struct {
+	data map[string]*entities.Paciente
 }
 
-func NewPacienteRepository() *paciente {
-	return &paciente{
-		Pacientes: make(map[string]*entities.Paciente),
+func NewPacienteRepository() *pacienterepository {
+	return &pacienterepository{
+		data: make(map[string]*entities.Paciente),
 	}
 }
 
-func (p *paciente) Historico(paciente *entities.Paciente) error {
-	if _, ok := p.Pacientes[paciente.ID]; ok {
-		return errors.New("paciente já existe")
+func (repo *pacienterepository) Adicionar(paciente *entities.Paciente) error {
+
+	if _, existe := repo.data[paciente.ID]; existe {
+		return ErrPacienteExiste
 	}
-	p.Pacientes[paciente.ID] = paciente
+	repo.data[paciente.ID] = paciente
 	return nil
 }
 
-func (p *paciente) BuscarId(id string) (*entities.Paciente, error) {
-	paciente, existe := p.Pacientes[id]
-    if !existe {
-        return nil, errors.New("paciente não encontrado")
+func (repo *pacienterepository) ObterPorID(id string) (*entities.Paciente, error) {
+	paciente, existe := repo.data[id]
+	if !existe {
+		return nil, nil
+	}
+	return paciente, nil
+}
+func (repo *pacienterepository) ListarTodos() ([]*entities.Paciente, error) {
+    var lista []*entities.Paciente
+    for _, paciente := range repo.data {
+        lista = append(lista, paciente)
     }
-	return paciente,nil
+    return lista, nil
 }

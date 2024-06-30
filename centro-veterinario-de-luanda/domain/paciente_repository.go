@@ -1,10 +1,9 @@
 package domain
 
-import (
-	"vet-clinic/domain/entities"
-)
+import "vet-clinic/domain/entities"
 
 type PacienteRepository interface {
-	Historico(paciente *entities.Paciente) error
-	BuscarId(id string)(*entities.Paciente, error)
-}
+	Adicionar(paciente *entities.Paciente) error
+	ObterPorID(id string)(*entities.Paciente, error)
+	ListarTodos() ([]*entities.Paciente, error)
+}			

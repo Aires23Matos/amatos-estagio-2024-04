@@ -1,18 +1,22 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"os"	
+    "os"
+    "github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "vet-clinic",
-	Short: "vet Clinic CLI",
-	Long:  "Vet Clinic é uma ferramenta paragerenciar pacientes e rondas no Centro Veterinario de Luanda",
+    Use:   "vet-clinic",
+    Short: "vet-clinic",
+    Long:  `CLI para gerenciar o internamento de pacientes no Centro Veterinário de Luanda.`,
 }
 
 func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
-	}
+    if err := rootCmd.Execute(); err != nil {
+        os.Exit(1)
+    }
+}
+
+func init() {
+    cobra.OnInitialize()
 }
