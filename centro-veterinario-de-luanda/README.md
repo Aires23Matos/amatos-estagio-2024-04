@@ -5,6 +5,7 @@ Projecto aprendizado pelos estagiários da Zafir
 ## Funcionalidade
 
 1. Internar paciente
+2. Efetuar Ronda
 
 ## Autores
 
@@ -46,7 +47,13 @@ Compilação para:
 * Execução do CLI
 Após a compilação, você pode executar o CLI no terminal
 
-Exemplo: ./vet-clinic-macos inserir-paciente 1 Bobby 100 Canino
+Exemplo: ./vet-clinic-macos inserir-paciente  --pacienteID "1" --tutorID "1" --especie "Canino" --diagnostico "Pneumonia" --queixas "Tosse persistente" Fido João
+
 ```
-./vet-clinic-macos internar-paciente <ID> <Nome> <IDTutor> <espécie>
+./vet-clinic-macos internar-paciente 
+````
+
+Exemplo: ./vet-clinic-windows efetuar_ronda --id 1 --frequenciaCardiaca 75 --glicemia 90.5 --batimento 70 --temperatura 37.2 --pressaoArterial "120/80"
+```
+./vet-clinic-macos efetuar_ronda 
 ````
