@@ -38,28 +38,6 @@ Compilação para:
 - Linux
 - Mac OS
 
-## Executável
-1. Windows
-```
-go build -o vet-clinic-windows.exe
-```
-2. Linux
-```
-go build -o vet-clinic-linux
-```
-3. Mac OS
-```
-go build -o vet-clinic-macos
-```
-4. Mac OS arm64
-```
-go build -o vet-clinic-macos-arm64
-```
-5. Linux arm
-```
-go build -o vet-clinic-linux-arm
-```
-
 * Execução do CLI
 Após a compilação, você pode executar o CLI no terminal
 
