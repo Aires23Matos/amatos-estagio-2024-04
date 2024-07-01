@@ -38,7 +38,7 @@ var efetuarRondaCmd = &cobra.Command{
         }
 
         for _, internamento := range internamentos {
-            log.Printf("ID: %s, Horário: %s, Realizada: %t, Frequência Cardíaca: %d, Glicemia: %f, Batimento: %d, Temperatura: %f, Pressão Arterial: %s",
+            log.Printf("ID: %s\n, Horário: %s\n, Realizada: %t\n, Frequência Cardíaca: %d\n, Glicemia: %.1f\n, Batimento: %d\n, Temperatura: %.1f\n, Pressão Arterial: %s\n",
                 internamento.ID, internamento.Horario, internamento.Realizada, internamento.FrequenciaCardiaca, internamento.Glicemia, internamento.Batimento, internamento.Temperatura, internamento.PressaoArterial)
         }
     },
