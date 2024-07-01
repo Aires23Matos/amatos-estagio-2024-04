@@ -1,6 +1,6 @@
-# Projecto Acme, Lda
+# Centro Veterinário de Luanda (C.V.L)
 
-Este projecto para aprendizado no estágio Zafir
+Projecto de aprendizado no estágio Zafir
 
 ## Autores
 1. Aires de Matos
