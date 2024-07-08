@@ -29,14 +29,14 @@ var calcularCmd = &cobra.Command{
       
        
 		fmt.Println("== Incrementos ==")
-        fmt.Printf("Sub Alimentação: %.2f\n", totalsubsidioalimentacao)
-        fmt.Printf("Sub Transporte: %.2f\n", totalsubsidiodetransporte)
+        fmt.Printf("Sub Alimentação: %.3fkz\n", totalsubsidioalimentacao)
+        fmt.Printf("Sub Transporte: %.3fkz\n", totalsubsidiodetransporte)
         // Incluir outros incrementos se necessário
 
         fmt.Println("\n== Descontos ==")
-        fmt.Printf("Salário base: %.2f\n", totalsalariobase)
-        fmt.Printf("Segurança Social: %.2f\n", inss)
-        fmt.Printf("IRT: %.2f\n", calcularirt)
+        fmt.Printf("Salário base: %.2fkz\n", totalsalariobase)
+        fmt.Printf("Segurança Social: %.2fkz\n", inss)
+        fmt.Printf("IRT: %.2fkz\n", calcularirt)
 
         fmt.Println("\nSalário Líquido:", calcularsalarioliquido)
     },
