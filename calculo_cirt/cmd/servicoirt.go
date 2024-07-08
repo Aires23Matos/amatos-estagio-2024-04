@@ -34,11 +34,11 @@ var calcularCmd = &cobra.Command{
         // Incluir outros incrementos se necessário
 
         fmt.Println("\n== Descontos ==")
-        fmt.Printf("Salário base: %.2fkz\n", totalsalariobase)
-        fmt.Printf("Segurança Social: %.2fkz\n", inss)
+        fmt.Printf("Salário base: %.3fkz\n", totalsalariobase)
+        fmt.Printf("Segurança Social: %.3fkz\n", inss)
         fmt.Printf("IRT: %.2fkz\n", calcularirt)
 
-        fmt.Println("\nSalário Líquido:", calcularsalarioliquido)
+        fmt.Println("\nSalário Líquido: %.3fkz", calcularsalarioliquido)
     },
     
 }
