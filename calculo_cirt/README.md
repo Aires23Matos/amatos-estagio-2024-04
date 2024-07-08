@@ -16,7 +16,7 @@
 2. para executar a aplicação deve executar o seguinte comando:
 
 ```
-  ./cirt -d [dias úteis de trabalho] -f [número de faltas] -a [subsídio de alimentção] -t [subsídio de transporte] -s [salário base]
+ ./cirt-linux cirt -d [dias úteis de trabalho] -f [número de faltas] -a [subsídio de alimentção] -t [subsídio de transporte] -s [salário base]
 ```
 
 ```
