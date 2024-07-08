@@ -38,7 +38,7 @@ var calcularCmd = &cobra.Command{
         fmt.Printf("Segurança Social: %.3fkz\n", inss)
         fmt.Printf("IRT: %.2fkz\n", calcularirt)
 
-        fmt.Println("\nSalário Líquido: %.3fkz", calcularsalarioliquido)
+        fmt.Printf("\nSalário Líquido: %.3fkz", calcularsalarioliquido)
     },
     
 }
