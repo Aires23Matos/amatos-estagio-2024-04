@@ -54,7 +54,7 @@ func (s *ServiceIRT) CalcularSubsidoPorDia(subsidio float64, dias int) float64 {
 	return calculosubsidiopordia
 }
 
-func (s *ServiceIRT) CalcularSubsidiodeAlimentacao(subsidio float64, totaldosdiasdetrabalho, faltas int) float64 {
+func (s *ServiceIRT) CalcularSubsidiodeAlimentacaoNosDiasUteis(subsidio float64, totaldosdiasdetrabalho, faltas int) float64 {
 	valordosubsidio := subsidio
 	diasuteis := totaldosdiasdetrabalho
 	valordaalimentacao, _ := s.SubsidioDeAlimentacao(valordosubsidio)
@@ -64,14 +64,28 @@ func (s *ServiceIRT) CalcularSubsidiodeAlimentacao(subsidio float64, totaldosdia
 	return calcularsubsidio
 }
 
-func (s *ServiceIRT)SubsidioDeTransporte(valordosubsidiodetransport float64)(float64, error){
+func (s *ServiceIRT) SubsidioDeTransporte(valordosubsidiodetransport float64) (float64, error) {
 	subsidiodetransporte := valordosubsidiodetransport
-	if subsidiodetransporte < 0{
+	if subsidiodetransporte < 0 {
 		return 0, errors.New("foi inserido valor negativo")
 	}
 	return subsidiodetransporte, nil
 }
 
-func(s *ServiceIRT) CalcularSubsidioDeTransportePorDia(){
+func (s *ServiceIRT) CalcularSubsidioDeTransportePorDia(subsidio float64, dias int) float64 {
+	sudsidiodetransport := subsidio
+	diasdetrabalho := dias
+	subsidiodiario, _ := s.SubsidioDeTransporte(sudsidiodetransport)
+	calcularsubsidiotransportpordia := subsidiodiario / float64(diasdetrabalho)
+	return calcularsubsidiotransportpordia
+}
 
+func (s *ServiceIRT) CalcularSubsidiodeTransporteNosDiasUteis(subsidio float64, totaldosdiasdetrabalho, faltas int)float64 {
+	valordosubsidio := subsidio
+	diasuteis := totaldosdiasdetrabalho
+	valordotransporte, _ := s.SubsidioDeTransporte(valordosubsidio)
+	valorpordia := s.CalcularSubsidioDeTransportePorDia(valordosubsidio, diasuteis)
+	diasrealizados, _ := s.DiasAposFalta(diasuteis, faltas)
+	calcularsubsidio := valordotransporte - (valorpordia * float64(diasrealizados))
+	return calcularsubsidio
 }

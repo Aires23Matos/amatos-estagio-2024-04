@@ -80,7 +80,7 @@ func TestCalularSalarioBaseAposFalta(t *testing.T) {
 
 func TestCalcularSubsidioDeAlimentacao(t *testing.T) {
 	var diasdetrabalho = 22
-	var diasuteis = 5
+	var diasdefaltas = 5
 	var subsidiodealimentacao = 35.000
 	t.Run("deve inserir valor do subsídio de Alimentação", func(t *testing.T) {
 		//Arrange
@@ -110,23 +110,25 @@ func TestCalcularSubsidioDeAlimentacao(t *testing.T) {
 		//Act
 		subsidiopordia := subsidio.CalcularSubsidoPorDia(subsidiodealimentacao, diasdetrabalho)
 		//Assert
-		if subsidiopordia < 0 {
-			t.Errorf("Não foi inserido nenhum subsídio de Alimentação. subsídio por dia: %.3f", subsidiopordia)
+		if subsidiopordia <= 0 {
+			t.Errorf("Não teve nenhum dinheiro do subsídio de alimentação ganho por dia. subsídio por dia: %.3f", subsidiopordia)
 		}
 	})
 	t.Run("Deve calcular o subsidio de Alimentação", func(t *testing.T) {
 		//rrange
 		subsidio := usecase.NewServicoIRT()
 		//Act
-		calculosubsidio := subsidio.CalcularSubsidiodeAlimentacao(subsidiodealimentacao, diasdetrabalho, diasuteis)
+		calculosubsidio := subsidio.CalcularSubsidiodeAlimentacaoNosDiasUteis(subsidiodealimentacao, diasdetrabalho, diasdefaltas)
 		//Assert
-		if calculosubsidio == 0 {
-			t.Error("Não foi adicionado nenhum subsidio de alimentação.")
+		if calculosubsidio <= 0 {
+			t.Errorf("Não foi adicionado nenhum subsidio de alimentação. valor do Subsídio: %.3f", calculosubsidio)
 		}
 	})
 }
 func TestCalcularSubsidiodeTransporte(t *testing.T) {
-	subsidiodetransporte := 0.0
+	diasdetrabalho := 22
+	faltas := 5
+	subsidiodetransporte := 70.000
 	t.Run("Deve inserir o valor do subsídio de transporte", func(t *testing.T) {
 		//Arrange
 		transporte := usecase.NewServicoIRT()
@@ -149,11 +151,24 @@ func TestCalcularSubsidiodeTransporte(t *testing.T) {
 		}
 	})
 
-	t.Run("Clacular o dinheiro do subsidio de transporte ganho por dia", func(t *testing.T) {
+	t.Run("Calcular o dinheiro do subsidio de transporte ganho por dia", func(t *testing.T) {
 		//Arrange
 		transporte := usecase.NewServicoIRT()
 		//Act
-		transporte.CalcularSubsidioDeTransportePorDia()
+		subsidiodetransportepordia := transporte.CalcularSubsidioDeTransportePorDia(subsidiodetransporte, diasdetrabalho)
 		//Assert
+		if subsidiodetransportepordia <= 0 {
+			t.Errorf("Não teve nenhum dinheiro do subsídio de transporte ganho por dia. valor por dia: %3f", subsidiodetransportepordia)
+		}
+	})
+	t.Run("Deve calcular o subsídio de Transporte", func(t *testing.T) {
+		//rrange
+		transporte := usecase.NewServicoIRT()
+		//Act
+		calculosubsidiodetransporte := transporte.CalcularSubsidiodeTransporteNosDiasUteis(subsidiodetransporte, diasdetrabalho, faltas)
+		//Assert
+		if calculosubsidiodetransporte <= 0{
+			t.Errorf("Não foi adicionado nenhum subsidio de Transporte. valor do Subsídio: %.3fkz", calculosubsidiodetransporte)
+		}
 	})
 }
