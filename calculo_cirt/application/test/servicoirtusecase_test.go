@@ -199,8 +199,83 @@ func TestCalcularDescontodeSegurancaSocial(t *testing.T) {
 		//Act
 		descontodesegurançasocial := desconto.CalcularDescontodeSegurancaSocial(salariobase, subsidioalimentacao, subsidiotransporte)
 		//Assert
-		if descontodesegurançasocial <=0 {
+		if descontodesegurançasocial <= 0 {
 			t.Errorf("Não foi feito corretamente o desconto de segurança Social.O Valor descontado: %.3fkz", descontodesegurançasocial)
+		}
+	})
+}
+
+func TestCalculoDoIRT(t *testing.T) {
+	salariobase := 200.000
+	subsidioalimentaca := 15.000
+	subsidiotransporte := 31.000
+
+	t.Run("Calcular o Excesso do subsídios de Alimentação", func(t *testing.T) {
+		//Arrange
+		execesso := usecase.NewServicoIRT()
+		//Act
+		totaldoexcesso, _ := execesso.CalcularExcessodoSubsidioAlimentacao(subsidioalimentaca)
+		//Assert
+		if subsidioalimentaca <= 0 {
+			t.Errorf("Não foi inserio corretamente o subsídio de Alimentação. valor: %.3f", totaldoexcesso)
+		}
+
+	})
+	t.Run("Calcular o Excesso do subsídios de Transporte", func(t *testing.T) {
+		//Arrange
+		execesso := usecase.NewServicoIRT()
+		//Act
+		totaldoexcesso, _ := execesso.CalcularExcessodoSubsidioTransporte(subsidiotransporte)
+		//Assert
+		if subsidiotransporte <= 0 {
+			t.Errorf("Não foi inserido corretamente o subsídio de Transporte. valor: %.3f", totaldoexcesso)
+		}
+	})
+	t.Run("Calcular total Sujeito a IRT", func(t *testing.T) {
+		//Arrange
+		totalsujeito := usecase.NewServicoIRT()
+		//Act
+		sujeitoirt := totalsujeito.CalcularTotalSujeitoIRT(subsidioalimentaca, subsidiotransporte)
+		//Assert
+		if sujeitoirt <= 0 {
+			t.Errorf("ESperedo valor maior e diferente de 0. Recebido: %.2f", sujeitoirt)
+		}
+	})
+	t.Run("Deve calcular o Metrial coletado", func(t *testing.T) {
+		//Arrange
+		naterialcoletado := usecase.NewServicoIRT()
+		//Act
+		totaldomaterialcoletado := naterialcoletado.CalcularMaterialColetado(salariobase, subsidioalimentaca, subsidiotransporte)
+		//Assert
+		if totaldomaterialcoletado <= 0 {
+			t.Errorf("O resultado é uma valor a baixo do esperado. valor: %.3fkz", totaldomaterialcoletado)
+		}
+	})
+
+	t.Run("Calcular o IRT", func(t *testing.T) {
+		//Arrange
+		calculoirt := usecase.NewServicoIRT()
+		//Act
+		totalIrt, mensagem := calculoirt.CalcularIRT(salariobase, subsidioalimentaca, subsidiotransporte)
+		//Assert
+		if totalIrt != 0 {
+			t.Errorf("Erro ao calucular o IRT. Revebido: %.3fkz, %v", totalIrt, mensagem)
+		}
+	})
+}
+
+func TestCalcularoSalarioliquido(t *testing.T) {
+	salariobase := 200.000
+	subsidioalimentacao := 15.000
+	subsidiotransporte := 31.000
+	t.Run("Deve calcular o salário liquido", func(t *testing.T) {
+		//Arrange
+		salarioliquido := usecase.NewServicoIRT()
+		//Act
+		totalsalario := salarioliquido.CalcularoSalarioLiquido(salariobase, subsidioalimentacao, subsidiotransporte)
+		//Assert
+		if totalsalario != 0{
+			t.Errorf("Erro ao Calcular salário Liquido. Recebido: %.3fkz", totalsalario)
 		}
 	})
 }
