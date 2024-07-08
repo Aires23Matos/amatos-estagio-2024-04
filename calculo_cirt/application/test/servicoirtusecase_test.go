@@ -79,9 +79,9 @@ func TestCalularSalarioBaseAposFalta(t *testing.T) {
 }
 
 func TestCalcularSubsidioDeAlimentacao(t *testing.T) {
-	var	diasdetrabalho = 22
+	var diasdetrabalho = 22
 	var diasuteis = 5
-	var	subsidiodealimentacao = 35.000
+	var subsidiodealimentacao = 35.000
 	t.Run("deve inserir valor do subsídio de Alimentação", func(t *testing.T) {
 		//Arrange
 		subsidio := usecase.NewServicoIRT()
@@ -110,18 +110,50 @@ func TestCalcularSubsidioDeAlimentacao(t *testing.T) {
 		//Act
 		subsidiopordia := subsidio.CalcularSubsidoPorDia(subsidiodealimentacao, diasdetrabalho)
 		//Assert
-		if subsidiopordia < 0{
+		if subsidiopordia < 0 {
 			t.Errorf("Não foi inserido nenhum subsídio de Alimentação. subsídio por dia: %.3f", subsidiopordia)
 		}
 	})
-	 t.Run("Deve calcular o subsidio de Alimentação", func(t *testing.T) {
-	 	//rrange
-	 	subsidio := usecase.NewServicoIRT()
-	 	//Act
-	 	calculosubsidio := subsidio.CalcularSubsidiodeAlimentacao(subsidiodealimentacao, diasdetrabalho, diasuteis)
-	 	//Assert
-		if calculosubsidio == 0{
-			t.Error("Subsidio de Alimentação não ceito.")
+	t.Run("Deve calcular o subsidio de Alimentação", func(t *testing.T) {
+		//rrange
+		subsidio := usecase.NewServicoIRT()
+		//Act
+		calculosubsidio := subsidio.CalcularSubsidiodeAlimentacao(subsidiodealimentacao, diasdetrabalho, diasuteis)
+		//Assert
+		if calculosubsidio == 0 {
+			t.Error("Não foi adicionado nenhum subsidio de alimentação.")
 		}
-	 })
+	})
+}
+func TestCalcularSubsidiodeTransporte(t *testing.T) {
+	subsidiodetransporte := 0.0
+	t.Run("Deve inserir o valor do subsídio de transporte", func(t *testing.T) {
+		//Arrange
+		transporte := usecase.NewServicoIRT()
+		//Act
+		subsidio, _ := transporte.SubsidioDeTransporte(subsidiodetransporte)
+		//Assert
+		if subsidio < 1 {
+			t.Errorf("não foi inserido o valor do subídio de transporte. Valor : %.1f", subsidio)
+		}
+	})
+
+	t.Run("Deve dar erro quando é inserido um valor negativo", func(t *testing.T) {
+		//Arrange
+		transporte := usecase.NewServicoIRT()
+		//Act
+		valor, mensagem := transporte.SubsidioDeTransporte(subsidiodetransporte)
+		//Assert
+		if valor == 0 {
+			t.Errorf("Erro: %v", mensagem)
+		}
+	})
+
+	t.Run("Clacular o dinheiro do subsidio de transporte ganho por dia", func(t *testing.T) {
+		//Arrange
+		transporte := usecase.NewServicoIRT()
+		//Act
+		transporte.CalcularSubsidioDeTransportePorDia()
+		//Assert
+	})
 }
