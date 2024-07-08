@@ -22,8 +22,8 @@ var calcularCmd = &cobra.Command{
 
         inss := service.CalcularDescontodeSegurancaSocial(salariobase, subsidiodealimentacao, subsidiotransporte)
 		totalsalariobase := service.SalarioBase(salariobase)
-		totalsubsidioalimentacao,_:=service.SubsidioDeAlimentacao(salariobase)
-		totalsubsidiodetransporte,_:=service.SubsidioDeTransporte(salariobase)
+		totalsubsidioalimentacao,_:=service.SubsidioDeAlimentacao(subsidiodealimentacao)
+		totalsubsidiodetransporte,_:=service.SubsidioDeTransporte(subsidiotransporte)
 		calcularirt,_ :=service.CalcularIRT(salariobase,subsidiodealimentacao,subsidiotransporte)
 		calcularsalarioliquido:=service.CalcularoSalarioLiquido(salariobase,subsidiodealimentacao,subsidiotransporte)
       
