@@ -167,8 +167,40 @@ func TestCalcularSubsidiodeTransporte(t *testing.T) {
 		//Act
 		calculosubsidiodetransporte := transporte.CalcularSubsidiodeTransporteNosDiasUteis(subsidiodetransporte, diasdetrabalho, faltas)
 		//Assert
-		if calculosubsidiodetransporte <= 0{
+		if calculosubsidiodetransporte <= 0 {
 			t.Errorf("Não foi adicionado nenhum subsidio de Transporte. valor do Subsídio: %.3fkz", calculosubsidiodetransporte)
+		}
+	})
+}
+
+func TestCalculoDoSalarioBruto(t *testing.T) {
+	salariobase := 100.000
+	subsidioalimentacao := 30.000
+	subsidiotransporte := 50.000
+	t.Run("Deve calcular o salario bruto", func(t *testing.T) {
+		//Arrange
+		salariobruto := usecase.NewServicoIRT()
+		//Act
+		totaldosalariobruto := salariobruto.CalculoDoSalarioBruto(salariobase, subsidioalimentacao, subsidiotransporte)
+		//Assert
+		if totaldosalariobruto <= 1 {
+			t.Errorf("O salario bruto não foi calculado corretamente. Salário Bruto: %.3fkz", totaldosalariobruto)
+		}
+	})
+}
+
+func TestCalcularDescontodeSegurancaSocial(t *testing.T) {
+	salariobase := 100.000
+	subsidioalimentacao := 30.000
+	subsidiotransporte := 50.000
+	t.Run("Deve calcular o Desconto da Segurança Social", func(t *testing.T) {
+		//Arrange
+		desconto := usecase.NewServicoIRT()
+		//Act
+		descontodesegurançasocial := desconto.CalcularDescontodeSegurancaSocial(salariobase, subsidioalimentacao, subsidiotransporte)
+		//Assert
+		if descontodesegurançasocial <=0 {
+			t.Errorf("Não foi feito corretamente o desconto de segurança Social.O Valor descontado: %.3fkz", descontodesegurançasocial)
 		}
 	})
 }

@@ -80,7 +80,7 @@ func (s *ServiceIRT) CalcularSubsidioDeTransportePorDia(subsidio float64, dias i
 	return calcularsubsidiotransportpordia
 }
 
-func (s *ServiceIRT) CalcularSubsidiodeTransporteNosDiasUteis(subsidio float64, totaldosdiasdetrabalho, faltas int)float64 {
+func (s *ServiceIRT) CalcularSubsidiodeTransporteNosDiasUteis(subsidio float64, totaldosdiasdetrabalho, faltas int) float64 {
 	valordosubsidio := subsidio
 	diasuteis := totaldosdiasdetrabalho
 	valordotransporte, _ := s.SubsidioDeTransporte(valordosubsidio)
@@ -88,4 +88,23 @@ func (s *ServiceIRT) CalcularSubsidiodeTransporteNosDiasUteis(subsidio float64, 
 	diasrealizados, _ := s.DiasAposFalta(diasuteis, faltas)
 	calcularsubsidio := valordotransporte - (valorpordia * float64(diasrealizados))
 	return calcularsubsidio
+}
+
+func (s *ServiceIRT) CalculoDoSalarioBruto(salariobase, subsidiodealimentacao, subsidiotransporte float64) float64 {
+	totaldosalariobase := salariobase
+	totaldosubsidiodealimentacao := subsidiodealimentacao
+	totaldosubsidiodetransporte := subsidiotransporte
+	alimentacao, _ := s.SubsidioDeAlimentacao(totaldosubsidiodealimentacao)
+	transporte, _ := s.SubsidioDeTransporte(totaldosubsidiodetransporte)
+	salariobruto := s.SalarioBase(totaldosalariobase) + alimentacao + transporte
+	return salariobruto
+}
+
+func (s *ServiceIRT) CalcularDescontodeSegurancaSocial(salariobase, subsidiodealimentacao, subsidiotransporte  float64)float64 {
+	totaldosalariobase := salariobase
+	totaldosubsidiodealimentacao := subsidiodealimentacao
+	totaldosubsidiodetransporte := subsidiotransporte
+
+	descontosdesegurancasocial := s.CalculoDoSalarioBruto(totaldosalariobase,totaldosubsidiodealimentacao,totaldosubsidiodetransporte) * 0.03
+	return descontosdesegurancasocial
 }
